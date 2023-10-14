@@ -1,39 +1,7 @@
 
 function(input, output, session) {
-
-  #### Upload files ####
-  
-  up_data <- reactive({
-    
-    req(input$upload)
-    inFile <- input$upload
-    if (is.null(inFile)) return(NULL)
-    data <- readRDS(inFile$datapath)
-
-    })
   
 
-  observe({
-    print(up_data())
-  })
-  
-  #### Track File upload ####
-  
-  observe({
-    if (!is.null(input$upload)) {
-      # Show the tabs if the file is uploaded
-      shinyjs::runjs('$("#tabs a[data-value=\'Intro\']").parent().show();')
-      shinyjs::runjs('$("#tabs a[data-value=\'Overview\']").parent().show();')
-      shinyjs::runjs('$("#tabs a[data-value=\'Self Assessment vs Distance\']").parent().show();')
-      
-    } else {
-      # Hide the tabs if the file is not uploaded
-      shinyjs::runjs('$("#tabs a[data-value=\'Intro\']").parent().hide();')
-      shinyjs::runjs('$("#tabs a[data-value=\'Overview\']").parent().hide();')
-      shinyjs::runjs('$("#tabs a[data-value=\'Self Assessment vs Distance\']").parent().hide();')
-      
-    }
-  })
 
   
   #### Plot - Distance ran per week ####
@@ -46,6 +14,18 @@ function(input, output, session) {
       layout(title = "Weekly Distance",
              xaxis = list(title = "Week"), yaxis = list(title = "Km")))
 
+  
+  
+#### Render choices for week selection ####
+  
+  output$week_select <- renderUI({
+    # Get unique categories from your data frame
+    categories <- unique(date(assessment$monday))
+    # Create the selectInput widget with dynamic choices
+    selectInput("week_select", "Select a Category", choices = categories)
+  })
+  
+  
 #### Plot - Sleep Score per day ####
   
 output$sleep_score <- renderPlotly(
@@ -163,6 +143,7 @@ output$feeling_plot <- renderPlotly(
 #### Rose Plot - Combination of all factors ####
 
 output$group_score <- renderPlotly(
+  
   assessment %>%
     group_by(monday) %>%
     summarise(distance = weekly_distance[1],
@@ -212,21 +193,6 @@ output$group_score <- renderPlotly(
       margin = list(l = 40, r = 60)
     )
 )
-
-
-#### Weekly stats (to remove) ####
-assessment %>%
-  group_by(monday) %>%
-  summarise(distance = weekly_distance[1],
-            speed = weekly_speed[1],
-            energy = sum(as.numeric(energy))/n(),
-            feeling = sum(as.numeric(feeling))/n(),
-            stress = sum(as.numeric(stress))/n(),
-            interruptions = sum(interruptions)/n(),
-            sleep_time =  sum(sleep_time)/n(),
-            sleep_score = sum(sleep_score)/n()) %>%
-  filter(distance == max(distance))
-
 
 
 #### Return overall stats ####
@@ -332,5 +298,6 @@ observeEvent(toListen(), {
   }
   
 })
+
 
 }

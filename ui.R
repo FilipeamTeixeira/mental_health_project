@@ -18,25 +18,46 @@ fluidPage(
     # Application title
     titlePanel("Strava Health"),
     
-
-    
-    #type = "tabs", 
-    
     tabsetPanel(id = "tabs",
-
-                tabPanel("Upload",
-                         div(style = "margin-top:40px"),
-                         
-                         p("Please upload an .rds file with the combined
-                           mental health, sleep and strava data."),
-                         div(style = "margin-top:30px"),
-                         
-                         
-                         fileInput("upload", "Upload a file"),
-                ),
                 
- #### Intro ####
+#### Intro ####
                 tabPanel("Intro",
+                         div(style = "margin-top:40px"),
+                         column(6,
+                                p("This project has been developed by .... together with the University of 
+                                  .... and the .... group, as a research and support tool for professional athletes. 
+                                  This study aims to understand the impact of sleep and running, on perceived mental 
+                                  health.", style = "line-height: 1.6;")),
+                         column(6,
+                           fluidRow(
+                           column(6,
+                                  div(class = "sum-km",
+                                      p("In total you ran: "),
+                                      textOutput("km_year"))
+                           ),
+                           column(6,
+                                  div(class = "stress",
+                                      p("You felt this stressed: "),
+                                      textOutput("stress"))
+                           )),
+                           
+                           div(style = "margin-top:40px"),
+                           
+                           fluidRow(
+                           column(6,
+                                  div(class = "stress",
+                                      p("You felt this energetic: "),
+                                      textOutput("energy"))
+                           ),
+                           column(6,
+                                  div(class = "stress",
+                                      p("You felt like this the most: "),
+                                      textOutput("feeling"))
+                           ))
+                         )),
+                
+ #### Overview ####
+                tabPanel("Overview",
                          div(style = "margin-top:40px"),
                          
                          column(6, align="center",
@@ -47,7 +68,9 @@ fluidPage(
                                 
                                 div(style = "margin-top:40px"),
                                 
-                                selectInput("week_select","Select Week",unique(date(assessment$monday))),
+                                #selectInput("week_select","Select Week",unique(date(assessment$monday))),
+                                uiOutput("week_select"),
+                                
                                 plotlyOutput('group_score', width = "300px", height = "300")
                          ),
 
@@ -79,36 +102,7 @@ fluidPage(
                 
 
                 ),
-                
-
-
-#### Overview ####
-tabPanel("Overview",
-         div(style = "margin-top:40px"),
-
-fluidRow(
-  
-  column(2,
-         div(class = "sum-km",
-             p("In total you ran: "),
-         textOutput("km_year"))
-         ),
-  column(2,
-         div(class = "stress",
-             p("You felt this stressed: "),
-             textOutput("stress"))
-  ),
-  column(2,
-         div(class = "stress",
-             p("You felt this energetic: "),
-             textOutput("energy"))
-  ),
-  column(2,
-         div(class = "stress",
-             p("You felt like this the most: "),
-             textOutput("feeling"))
-  )
-  )),
+              
 
 #### Self Assessment ####
 tabPanel("Self Assessment vs Distance", 

@@ -12,11 +12,20 @@ knitr::opts_chunk$set(echo = TRUE)
 This project has been developed by .... together with the University of .... and the .... group, as a research and support tool for professional athletes. This study aims to understand the impact of sleep and running, on perceived mental health.
 
 ### Installing
-Install R and RStudio from [here](https://posit.co/download/rstudio-desktop/).
-Download this package from its [github repository](to do)
 
+- Install R and RStudio from [here](https://posit.co/download/rstudio-desktop/). 
+- Download this package from its [github repository](https://github.com/FilipeamTeixeira/mental_health_project). 
+- Open the strava_health.Rproj using RStudio.
+- Open either server.R, or ui.R and click "Run App".
+
+
+### Using the app
+- Input your strava username and credentials.
+- ...
 
 ### Color palette to use throughout the project
+
+This project uses the following colour palette.
 
 Colors: 
 "#1DACE8", "#F24D29", "#EDCB64"

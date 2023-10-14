@@ -68,7 +68,6 @@ fluidPage(
                                 
                                 div(style = "margin-top:40px"),
                                 
-                                #selectInput("week_select","Select Week",unique(date(assessment$monday))),
                                 uiOutput("week_select"),
                                 
                                 plotlyOutput('group_score', width = "300px", height = "300")

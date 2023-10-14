@@ -13,6 +13,7 @@ This project has been developed by .... together with the University of .... and
 
 ### Installing
 Install R and RStudio from [here](https://posit.co/download/rstudio-desktop/).
+Download this package from its [github repository](to do)
 
 
 ### Color palette to use throughout the project

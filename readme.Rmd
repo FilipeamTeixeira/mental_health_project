@@ -1,0 +1,21 @@
+---
+title: "Readme"
+output: html_document
+date: "2023-09-21"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Strava and mental health
+This project has been developed by .... together with the University of .... and the .... group, as a research and support tool for professional athletes. This study aims to understand the impact of sleep and running, on perceived mental health.
+
+### Installing
+Install R and RStudio from [here](https://posit.co/download/rstudio-desktop/).
+
+
+### Color palette to use throughout the project
+
+Colors: 
+"#1DACE8", "#F24D29", "#EDCB64"

@@ -4,7 +4,7 @@ function(input, output, session) {
 
 
   
-  #### Plot - Distance ran per week ####
+#### Plot - Distance ran per week ####
   output$week_dist <- renderPlotly(
     assessment %>%
       group_by(monday) %>%
@@ -261,6 +261,7 @@ output$feeling <- renderText({
     paste()
 })
 
+
 #### Calculate How am I ####
 
 # Listen to multiple events
@@ -270,15 +271,12 @@ toListen <- reactive({
 
 observeEvent(toListen(), {
   
-  # Example usage of the function
-  # Replace these values with your actual average previous distance and sleep score
-  avg_prev_distance <- input$distance_input  # Example average previous distance in km
+  avg_prev_distance <- input$distance_input  
   avg_prev_sleep <- input$sleep_input   
   
   predicted_happiness <- predict_happiness(avg_prev_distance, avg_prev_sleep)
   
   if(predicted_happiness >= 0 & predicted_happiness < 2){
-    #output$howamI <- renderText(paste("Terrible"))
     output$howamI <- renderUI(HTML(as.character(div(style="color: #F24d29; font-size:40px;",
                                                     paste("Terrible")))))
     

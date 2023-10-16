@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Note
 This is a restricted version of the original MindStride: Empowering Runners Through Mental Wellness.
+Therefor the dataset cannot be shared and only the code will be available.
 
 ### Strava and mental health
 This project has been developed by .... together with the University of .... and the .... group, as a research and support tool for professional athletes. This study aims to understand the impact of sleep and running, on perceived mental health.
@@ -24,6 +25,7 @@ This project has been developed by .... together with the University of .... and
 
 ### Using the app
 - Input your strava username and credentials.
+- Connect to the ... server using the credentials provided by mail.
 - ...
 
 ### Color palette to use throughout the project

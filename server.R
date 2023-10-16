@@ -261,9 +261,9 @@ output$feeling <- renderText({
     paste()
 })
 
-#### How am I? ####
+#### Calculate How am I ####
 
-#listen to multiple events
+# Listen to multiple events
 toListen <- reactive({
   list(input$distance_input,input$sleep_input)
 })
